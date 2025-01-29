@@ -173,6 +173,11 @@ async def account_login(bot: Client, m: Message):
                 url = f'https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={pwtoken}'
                 print(url)
 
+            if 'appx1.arvind.eu.org' in url and not '/drm/' in url:
+                id = url.split("/")[-2]
+                url = f'https://appx1.arvind.eu.org/{id}/{raw_text2}.m3u8'
+                print(url)
+
             elif 'cpvod.testbook' in url:
              id =  url.split("/")[-2]
              url =  "https://mon-key-3612a8154345.herokuapp.com/get_keys?url=https://cpvod.testbook.com/" + id + "/playlist.m3u8"
