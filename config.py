@@ -1,8 +1,8 @@
 import os
 
 class Config:
-    api_id = 12283173515
-    api_hash = "be786a8240abf6e12283173515e2f833"
-    bot_token = "8113578720:AAGuDsG3Gqa6XkwurIFbQRX5y3LwrtbTeU8"
+    api_id = 12475131
+    api_hash = "719171e38be5a1f500613837b79c536f"
+    bot_token = "8012231272:AAFITViiSvq-2hXqbCaS4VBwHahNsim-woE"
     pwtoken = "sdt1"
  
