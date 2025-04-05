@@ -165,13 +165,27 @@ async def account_login(bot: Client, m: Message):
                                                          'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 
                                                          'sec-ch-ua-mobile': '?1', 
                                                          'sec-ch-ua-platform': '"Android"',}) as resp:    
-                        text = await resp.text()    
-                        url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
+                        text = await resp.text()  
+                                                             
+               count =int(raw_text)    
+    try: 
+        url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
 
-            if '/master.mpd' in url and not '/drm/' in url:
-                id = url.split("/")[-2]
-                pwtoken = os.getenv('pwtoken')
-                url = f'https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={pwtoken}'
+            for i in range(arg-1, len(links)):
+            Vxy = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
+            url = "https://" + Vxy
+            link0 = "https://" + Vxy
+            urlcpvod = "https://dragoapi.vercel.app/video/https://" + Vxy
+
+            if "/master.mpd" in url:
+                cmd= f" yt-dlp -k --allow-unplayable-formats -f bestvideo.{quality} --fixup never {url} "
+                print("counted")
+            
+
+            elif '/master.mpd' in url:                
+                id =  url.split("/")[-2] 
+                policy = requests.post('https://api.penpencil.xyz/v1/files/get-signed-cookie', headers=headers.pw, json={'url': f"https://d1d34p8vz63oiq.cloudfront.net/" + id + "/master.mpd"}).json()['data']
+                url = "https://sr-get-video-quality.selav29696.workers.dev/?Vurl=" + "https://d1d34p8vz63oiq.cloudfront.net/" + id + f"/hls/{raw_text2}/main.m3u8" + policy
                 print(url)
 
             elif 'cpvod.testbook' in url:
