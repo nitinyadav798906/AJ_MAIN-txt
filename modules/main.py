@@ -229,9 +229,9 @@ async def account_login(bot: Client, m: Message):
             if "jw-prod" in url and (url.endswith(".mp4") or "Expires=" in url):
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
 
-            #if "jw-prod" in url and (url.endswith(".mp4") or "Expires=" in url):
-                #user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"             
-                #cmd = f'yt-dlp -o "{name}.mp4" --user-agent "{user_agent}" "{url}"'
+            if "jw-prod" in url and (url.endswith(".mp4") or "Expires=" in url):
+                user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"             
+                cmd = f'yt-dlp -o "{name}.mp4" --user-agent "{user_agent}" "{url}"'
 
             elif "youtube.com" in url or "youtu.be" in url:
                 cmd = f'yt-dlp --cookies youtube_cookies.txt -f "{ytf}" "{url}" -o "{name}".mp4'
