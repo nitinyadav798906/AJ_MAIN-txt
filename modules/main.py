@@ -168,7 +168,7 @@ async def account_login(bot: Client, m: Message):
                         text = await resp.text()  
                                                              
      
-    try: 
+    
         url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
 
             for i in range(arg-1, len(links)):
