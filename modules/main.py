@@ -166,12 +166,9 @@ async def account_login(bot: Client, m: Message):
                                                          'sec-ch-ua-mobile': '?1', 
                                                          'sec-ch-ua-platform': '"Android"',}) as resp:    
                         text = await resp.text()  
-                                                             
-     
-    
-        url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
-        
-            if "/master.mpd" in url:
+                                                            
+            
+        if "/master.mpd" in url:
                 cmd= f" yt-dlp -k --allow-unplayable-formats -f bestvideo.{quality} --fixup never {url} "
                 print("counted")
             
