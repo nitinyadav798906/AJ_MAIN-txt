@@ -171,11 +171,6 @@ async def account_login(bot: Client, m: Message):
     
         url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
         
-            Vxy = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","")
-            url = "https://" + Vxy
-            link0 = "https://" + Vxy
-            urlcpvod = "https://dragoapi.vercel.app/video/https://" + Vxy
-
             if "/master.mpd" in url:
                 cmd= f" yt-dlp -k --allow-unplayable-formats -f bestvideo.{quality} --fixup never {url} "
                 print("counted")
