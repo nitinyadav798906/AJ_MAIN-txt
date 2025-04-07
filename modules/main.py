@@ -173,7 +173,49 @@ async def account_login(bot: Client, m: Message):
                 print("counted")
             
 
-            elif '/master.mpd' in url:                
+            if "visionias" in url:    
+    async with ClientSession() as session:    
+        async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                                             'Accept-Language': 'en-US,en;q=0.9', 
+                                             'Cache-Control': 'no-cache', 
+                                             'Connection': 'keep-alive', 
+                                             'Pragma': 'no-cache', 
+                                             'Referer': 'http://www.visionias.in/', 
+                                             'Sec-Fetch-Dest': 'iframe', 
+                                             'Sec-Fetch-Mode': 'navigate', 
+                                             'Sec-Fetch-Site': 'cross-site', 
+                                             'Upgrade-Insecure-Requests': '1', 
+                                             'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',
+                                             'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 
+                                             'sec-ch-ua-mobile': '?1', 
+                                             'sec-ch-ua-platform': '"Android"',}) as resp:    
+            text = await resp.text()    
+            url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
+
+# ===== FIXED SECTION STARTS HERE =====
+if "/master.mpd" in url:
+    # Use raw_text2 for resolution instead of undefined 'quality'
+    cmd = f'yt-dlp -k --allow-unplayable-formats -f "bestvideo[height<={raw_text2}]+bestaudio" --fixup never "{url}"'
+    print("MPD Link Processing Started")
+
+elif '/master.mpd' in url:
+    # Define proper headers for PenPencil API
+    penpencil_headers = {
+        'Authorization': 'Bearer YOUR_PENPENCIL_TOKEN',  # Replace with actual token
+        'Content-Type': 'application/json'
+    }
+    id = url.split("/")[-2]
+    policy_response = requests.post(
+        'https://api.penpencil.xyz/v1/files/get-signed-cookie',
+        headers=penpencil_headers,
+        json={'url': f"https://d1d34p8vz63oiq.cloudfront.net/{id}/master.mpd"}
+    )
+    policy = policy_response.json()['data']
+    url = f"https://sr-get-video-quality.selav29696.workers.dev/?Vurl=https://d1d34p8vz63oiq.cloudfront.net/{id}/hls/{raw_text2}/main.m3u8{policy}"
+    print("Generated Signed URL:", url)
+# ===== FIXED SECTION ENDS HERE =====
+
+           elif '/master.mpd' in url:                
                 id =  url.split("/")[-2] 
                 policy = requests.post('https://api.penpencil.xyz/v1/files/get-signed-cookie', headers=headers.pw, json={'url': f"https://d1d34p8vz63oiq.cloudfront.net/" + id + "/master.mpd"}).json()['data']
                 url = "https://sr-get-video-quality.selav29696.workers.dev/?Vurl=" + "https://d1d34p8vz63oiq.cloudfront.net/" + id + f"/hls/{raw_text2}/main.m3u8" + policy
