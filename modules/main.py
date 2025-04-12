@@ -188,7 +188,7 @@ if '/master.mpd' in url:
     print("Generated Signed URL:", url)
 # ===== FIXED SECTION ENDS HERE =====
 
-           elif '/master.mpd' in url:                
+           if '/master.mpd' in url:                
                 id =  url.split("/")[-2] 
                 policy = requests.post('https://api.penpencil.xyz/v1/files/get-signed-cookie', headers=headers.pw, json={'url': f"https://d1d34p8vz63oiq.cloudfront.net/" + id + "/master.mpd"}).json()['data']
                 url = "https://sr-get-video-quality.selav29696.workers.dev/?Vurl=" + "https://d1d34p8vz63oiq.cloudfront.net/" + id + f"/hls/{raw_text2}/main.m3u8" + policy
