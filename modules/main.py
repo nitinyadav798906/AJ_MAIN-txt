@@ -7,7 +7,8 @@ import asyncio
 import requests
 import subprocess
 import wget
-
+import requests
+from config import PROXY, HOST
 import core as helper
 from utils import progress_bar
 from vars import api_id, api_hash, bot_token
@@ -252,7 +253,19 @@ elif '/master.mpd' in url:
             elif "apps-s3-jw-prod.utkarshapp.com" in url:
                 if 'https://apps-s3-jw-prod.utkarshapp.com/admin_v1/file_library/videos/enc_plain_mp4' in url:
                     url = url.replace(url.split("/")[-1], res+'.mp4')
-                    
+
+                     
+    def fetch_data():
+    try:
+        response = requests.get(HOST, proxies=proxies, timeout=10)
+        print(response.text)
+    except requests.exceptions.RequestException as e:
+        print("Proxy or Host error:", e)
+
+# Example run
+if name == "main":
+    fetch_data()
+    
                 elif 'Key-Pair-Id' in url:
                     url = None
                
