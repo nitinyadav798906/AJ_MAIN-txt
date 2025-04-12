@@ -175,7 +175,7 @@ async def account_login(bot: Client, m: Message):
 
 
 # ===== FIXED SECTION STARTS HERE =====
-if "/master.mpd" in url:
+elif "/master.mpd" in url:
     # Use raw_text2 for resolution instead of undefined 'quality'
     cmd = f'yt-dlp -k --allow-unplayable-formats -f "bestvideo[height<={raw_text2}]+bestaudio" --fixup never "{url}"'
     print("MPD Link Processing Started")
