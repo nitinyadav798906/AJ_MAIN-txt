@@ -171,7 +171,7 @@ async def account_login(bot: Client, m: Message):
 
 # ===== FIXED SECTION STARTS HERE =====
 
-if '/master.mpd' in url:
+elif '/master.mpd' in url:
     # Define proper headers for PenPencil API
     penpencil_headers = {
         'Authorization': 'Bearer YOUR_PENPENCIL_TOKEN',  # Replace with actual token
