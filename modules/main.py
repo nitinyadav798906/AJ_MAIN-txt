@@ -167,18 +167,9 @@ async def account_login(bot: Client, m: Message):
                                                          'sec-ch-ua-mobile': '?1', 
                                                          'sec-ch-ua-platform': '"Android"',}) as resp:    
                         text = await resp.text()  
-                                                            
-            
-        if "/master.mpd" in url:
-                cmd= f" yt-dlp -k --allow-unplayable-formats -f bestvideo.{quality} --fixup never {url} "
-                print("counted")
 
 
 # ===== FIXED SECTION STARTS HERE =====
-elif "/master.mpd" in url:
-    # Use raw_text2 for resolution instead of undefined 'quality'
-    cmd = f'yt-dlp -k --allow-unplayable-formats -f "bestvideo[height<={raw_text2}]+bestaudio" --fixup never "{url}"'
-    print("MPD Link Processing Started")
 
 elif '/master.mpd' in url:
     # Define proper headers for PenPencil API
